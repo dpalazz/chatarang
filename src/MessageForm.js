@@ -8,6 +8,7 @@ class MessageForm extends Component {
   handleSubmit = (ev) => {
     ev.preventDefault()
     this.props.addMessage(this.state.body)
+    this.setState({ body: '' })
   }
 
   handleChange = (ev) => {
@@ -25,6 +26,7 @@ class MessageForm extends Component {
           <i className="fas fa-comment-alt"></i>
         </div>
         <input
+          autoFocus
           type="text"
           name="body"
           placeholder="Type a message..."
