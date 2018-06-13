@@ -4,40 +4,30 @@ import UserInfo from './UserInfo'
 
 const Sidebar = (props) => {
   return (
-    <div style={styles.sidebar}>
-      <UserInfo />
-      <aside
-        className="Sidebar"
+    <aside
+      className="Sidebar"
+      style={styles.sidebar}
+    >
+      <UserInfo user={props.user} />
+      <h1
+        style={{
+          ...styles.children,
+          ...styles.h1,
+        }}
+      >
+        XTBC 18
+      </h1>
+      <nav
+        className="RoomList"
         style={styles.children}
       >
-        <div
-          className="UserInfo"
-        >
-          <div className="Avatar"></div>
-          <div className="user">
-            {props.user.userName}
-          </div>
-        </div>
-        <h1
-          style={{
-            ...styles.children,
-            ...styles.h1,
-          }}
-        >
-          XTBC 18
-        </h1>
-        <nav
-          className="RoomList"
-          style={styles.children}
-        >
-          <h2>Rooms</h2>
-          <ul>
-            <li><a href="#">general</a></li>
-            <li><a href="#">random</a></li>
-          </ul>
-        </nav>
-      </aside>
-    </div>
+        <h2>Rooms</h2>
+        <ul>
+          <li><a href="#">general</a></li>
+          <li><a href="#">random</a></li>
+        </ul>
+      </nav>
+    </aside>
   )
 }
 

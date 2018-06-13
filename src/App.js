@@ -2,25 +2,20 @@ import React, { Component } from 'react'
 
 import './App.css'
 import Main from './Main'
-import SignIn from './SignIn'
 
 class App extends Component {
   state = {
     user: {
-      uid: null,
-      userName: '',
-    },
-    signedIn: true,
+      uid: '76547',
+      userName: 'maggie',
+      email: 'maggie@aol.com',
+    }
   }
 
   render() {
     return (
       <div className="App">
-        {
-          this.state.signedIn
-            ? <Main user={this.state.user} />
-            : <SignIn signedIn={this.state.signedIn} />
-        }
+        <Main user={this.state.user} />
       </div>
     )
   }
