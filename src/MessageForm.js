@@ -22,7 +22,7 @@ class MessageForm extends Component {
         style={styles.messageForm}
       >
         <div style={styles.chatIcon}>
-          <i class="fas fa-comment-alt"></i>
+          <i className="fas fa-comment-alt"></i>
         </div>
         <input
           type="text"
@@ -36,7 +36,7 @@ class MessageForm extends Component {
           type="submit"
           style={styles.button}
         >
-          <i class="far fa-paper-plane" title="Send"></i>
+          <i className="far fa-paper-plane" title="Send"></i>
         </button>
       </form>
     )
