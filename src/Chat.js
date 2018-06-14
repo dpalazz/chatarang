@@ -16,11 +16,27 @@ class Chat extends Component {
   }
 
   componentWillMount() {
-    base.syncState('random/messages', {
+    this.syncMessages()
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.room.name !== this.props.room.name) {
+      this.syncMessages()
+    }
+  }
+
+  syncMessages = () => {
+    if (this.state.rebaseBinding) {
+      base.removeBinding(this.state.rebaseBinding)
+    }
+    
+    const rebaseBinding = base.syncState('random/messages', {
       context: this,
       state: 'messages',
       asArray: true,
     })
+
+    this.setState({ rebaseBinding })
   }
 
   addMessage = (body) => {

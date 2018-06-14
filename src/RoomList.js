@@ -2,40 +2,45 @@ import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite'
 
 import RoomLink from './RoomLink'
+import base from './base'
 
 class RoomList extends Component {
   state = {
-    rooms: {
-      general: {
-        name: 'general',
-        description: 'whatever, just chat, folks.',
-        messages: [],
-      },
-      s2morning: {
-        name: 's2morning',
-        description: 'chat about coursework.',
-        messages: [],
-      },
-      random: {
-        name: 'random',
-        description: 'memes, probably.',
-        messages: [],
-      },
-    }
+    rooms: {}
   }
-  
-  render(){
+
+  componentDidMount() {
+    base.syncState(
+      'rooms',
+      {
+        context: this,
+        state: 'rooms',
+      }
+    )
+  }
+
+  addRoom = (room) => {
+    const rooms = {...this.state.rooms}
+    rooms[room.name] = room
+    this.setState({ rooms })
+  }
+
+  render() {
     return (
       <nav
         className={`RoomList ${css(styles.nav)}`}
       >
         <h2 className={css(styles.h2)}>Rooms</h2>
         <ul className={css(styles.list)}>
-        {
-          Object.keys(this.state.rooms).map(roomname => (
-            <RoomLink key={roomname} room={this.state.rooms[roomname]}/>)
-          )
-        }
+          {
+            Object.keys(this.state.rooms).map(roomName => (
+              <RoomLink
+                key={roomName}
+                room={this.state.rooms[roomName]}
+                loadRoom={this.props.loadRoom}
+              />
+            ))
+          }
         </ul>
       </nav>
     )
