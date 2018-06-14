@@ -8,23 +8,17 @@ class SignIn extends Component {
     email: '',
   }
 
-  authenticate = () => {
-    auth.signInWithPopup(googleProvider)
-      .then(result => this.props.handleAuth(result.user))
-      .catch(error => console.log(error))
-  }
-
   handleChange = (ev) => {
     this.setState({ email: ev.target.value })
   }
 
   handleSubmit = (ev) => {
     ev.preventDefault()
-    this.props.handleAuth({
-      uid: '234243',
-      displayName: this.state.email,
-      email: this.state.email,
-    })
+    // do something?
+  }
+
+  authenticate = () => {
+    auth.signInWithPopup(googleProvider)
   }
 
   render() {
@@ -42,7 +36,7 @@ class SignIn extends Component {
             onSubmit={this.handleSubmit}
           >
             <h1>Welcome!</h1>
-            <label htmlFor="email" className={css(styles.label)}>
+            {/* <label htmlFor="email" className={css(styles.label)}>
               Email
             </label>
             <input
@@ -56,13 +50,15 @@ class SignIn extends Component {
               Sign In
             </button>
 
-            <button 
+            <div>or</div> */}
+
+            <button
               type="button"
               className={css(styles.button)}
               onClick={this.authenticate}
             >
               <i className={`fab fa-google ${css(styles.brandIcon)}`}></i>
-              Sign In with Google
+              Sign in with Google
             </button>
           </form>
 
@@ -154,7 +150,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#ff3333',
     color: 'white',
     width: '20rem',
+    cursor: 'pointer',
   },
+
+  brandIcon: {
+    marginRight: '1rem',
+  }
 })
 
 export default SignIn
